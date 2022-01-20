@@ -50,4 +50,13 @@ app.post("/pantry", async (req, res) => {
   }
 })
 
+// delete pantry item route
+app.delete("/pantry/:id", async(req, res) => {
+  try {
+    res.json(await Pantry.findByIdAndDelete(req.params.id))
+  } catch(error) {
+    res.status(400).json(error)
+  }
+})
+
 app.listen(PORT, () => console.log(`${PORT}`))

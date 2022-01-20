@@ -59,4 +59,13 @@ app.delete("/pantry/:id", async(req, res) => {
   }
 })
 
+// update pantry item route
+app.put("/pantry/:id", async(req, res) => {
+  try {
+    res.json(await Pantry.findByIdAndUpdate(req.params.id, req.body, { new: true }))
+  } catch(error) {
+    res.status(400).json(error)
+  }
+})
+
 app.listen(PORT, () => console.log(`${PORT}`))

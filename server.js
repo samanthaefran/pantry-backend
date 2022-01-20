@@ -33,10 +33,18 @@ app.use(express.json())
 app.get('/', (req, res) => {
   res.send('im alive!')
 })
-
+// pantry index route 
 app.get("/pantry", async (req, res) => {
   try {
     res.json(await Pantry.find({}))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+// create pantry item route
+app.post("/pantry", async (req, res) => {
+  try {
+    res.json(await Pantry.create(req.body))
   } catch (error) {
     res.status(400).json(error)
   }
